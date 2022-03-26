@@ -1,0 +1,19 @@
+{
+  "name": "mitso-nodejs-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kinier/mitso-nodejs-task.git"
+  },
+  "author": "maxim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kinier/mitso-nodejs-task/issues"
+  },
+  "homepage": "https://github.com/Kinier/mitso-nodejs-task#readme"
+}
