@@ -1,31 +1,39 @@
-const { Transform } = require("stream");
+const {Transform} = require("stream");
 const task = require('./task.js');
 
 class taskTransform extends Transform {
-    constructor() {
+    constructor(action) {
         super();
-
+        this.action = action;
     }
 
     _transform(chunk, enc, done) {
-        // > если данные с консоли пришли
-        let data= chunk.toString();
-        if (!data){
+        let data = chunk.toString();
+        let tAnswer = ''
+
+
+        if (!data) {
             process.exit(1);
         }
-        let match = /\n/.exec(data); // не очищенные данные
-        if (match){
-            data = data.slice(0, data.length - 2); // это БАЗА
+        switch (this.action) {
+            case 'diff':
+                let match = /\n/.exec(data); // не очищенные данные
+                if (match) {
+                    data = data.slice(0, data.length - 2); // это БАЗА
+                }
+
+
+                const [shift, canon] = data.split(':');
+
+
+                tAnswer = task.shiftedDiff(shift, canon);
+            break;
+
+            case 'equals':
+                let arr = JSON.parse(data);
+                tAnswer = task.indexEqualsValue(arr);
+            break;
         }
-        // <
-
-        const [shift, canon] =  data.split(':');
-
-
-        let tAnswer = task.shiftedDiff(shift, canon);
-
-
-
 
 
         this.push(tAnswer.toString());
