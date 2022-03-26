@@ -20,5 +20,20 @@ module.exports = {
 
         }
         return -1;
+    },
+
+    indexEqualsValue: function (array) {
+        let answer = -1;
+        let previous = Math.max(...array);
+        if (array[0] === 0 && array.length === 1)
+            return 0
+
+        for(let i =0; i < array.length; i++){
+            if (array[i] === i && array[i] < previous){
+                    previous = answer;
+                    answer = array[i];
+            }
+        }
+        return answer;
     }
 };
