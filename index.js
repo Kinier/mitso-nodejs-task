@@ -17,7 +17,7 @@ const actionHandler = async () => {
         // noinspection JSCheckFunctionSignatures
         await pipeline(
             args['input'] ? fs.createReadStream(args['input']) : stdin,
-            new taskTransform(),
+            new taskTransform(args['action']),
             args['output'] ? fs.createWriteStream(args['output'], {flags: "a"}) : stdout
         );
 
@@ -33,6 +33,7 @@ const actionHandler = async () => {
 process.stdin.setEncoding("utf-8");
 
 program
+    .requiredOption('-a, --action <string>', 'what function to call')
     .option('-i, --input <filename>')
     .option('-o, --output <filename>')
     .action(actionHandler);
