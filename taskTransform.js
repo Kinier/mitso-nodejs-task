@@ -1,5 +1,6 @@
 const {Transform} = require("stream");
 const task = require('./task.js');
+const Validator = require('./validator.class.js')
 
 class taskTransform extends Transform {
     constructor(action) {
@@ -12,7 +13,8 @@ class taskTransform extends Transform {
         let tAnswer = ''
 
 
-        if (!data) {
+        if (!Validator.isEmpty(data)){
+            process.stderr.write('Не введено ничего');
             process.exit(1);
         }
         switch (this.action) {
@@ -30,13 +32,19 @@ class taskTransform extends Transform {
             break;
 
             case 'equals':
-                let arr = JSON.parse(data);
-                tAnswer = task.indexEqualsValue(arr);
+                    let arr = JSON.parse(data);
+                    tAnswer = task.indexEqualsValue(arr);
+
+            break;
+
+            default:
+                process.stderr.write(`Команду не так ввел`);
+                process.exit(1);
             break;
         }
 
 
-        this.push(tAnswer.toString());
+        this.push(tAnswer.toString() + "\n");
         done();
     }
 }
