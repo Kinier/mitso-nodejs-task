@@ -1,4 +1,12 @@
 # mitso-nodejs-task
+Скачивание
+```
+git clone https://github.com/Kinier/mitso-nodejs-task.git
+```
+Установить необходимые пакеты
+```
+npm install
+```
 # how to start
 Для того чтобы запустить программу необходимо в командной строке
 набрать команду node index.js
