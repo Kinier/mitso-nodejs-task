@@ -39,4 +39,9 @@ program
     .action(actionHandler);
 program.parse();
 
+process.on("exit", (code) => stdout.write(`\nКод выхода - ${code}`));
 
+process.on('SIGINT', () => {
+    stdout.write('Выход из программы\n')
+    process.exit(0)
+})
