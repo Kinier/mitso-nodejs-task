@@ -17,7 +17,7 @@ node index.js
 передать параметр *--action* или *-a*, всего доступно
 две его вариации
 ```bash
-node index.js --action 'equal'
+node index.js --action 'equals'
 ```
 или
 ```bash
